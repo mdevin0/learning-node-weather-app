@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+
+<html>
+    {{>head}}
+    <body>
+        <div class="main-content">
+            {{>header}}
+            <p>Enter a location below to see the weather.</p>
+            <form id ="weatherForm">
+                <input id="location" placeholder="Location">
+                <button>Search</button>
+            </form>
+            <p id="successMessage"></p>
+            <p id="errorMessage"></p>
+        </div>
+        {{>footer}}
+        <script src="/js/app.js"></script>
+    </body>
+</html>
