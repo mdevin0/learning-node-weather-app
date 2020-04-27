@@ -1,5 +1,5 @@
-html {
-    background-color: #111111;
+a {
+    color: #bbbbbb;
 }
 
 body {
@@ -33,6 +33,10 @@ footer {
 
 h1 {
     color: #bbbbbb;
+}
+
+html {
+    background-color: #111111;
 }
 
 input {
