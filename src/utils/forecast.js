@@ -1,10 +1,20 @@
-const loadConfig = require('./load-config.js')
 const request = require('postman-request');
 
+const loadConfig = require('./load-config.js');
 
-const config = loadConfig();
-const base_url = config.weatherstack_base_url;
-const key = config.weatherstack_key;
+let base_url;
+let key;
+
+if(process.env.MAPBOX_GEOCODE_BASE_URL && process.env.MAPBOX_KEY){
+    base_url = process.env.WEATHERSTACK_BASE_URL;
+    key = process.env.WEATHERSTACK_KEY;
+    console.log('Loading weatherstack variables from environment.');
+} else {
+    const config = loadConfig();
+    base_url = config.weatherstack_base_url;
+    key = config.weatherstack_key;
+    console.log('Loading weatherstack variables from config file.');
+}
 
 const forecast = (lat, lon, callback) => {
     if(!lat instanceof Number || !lon instanceof Number){

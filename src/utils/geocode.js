@@ -2,10 +2,19 @@ const request = require('postman-request');
 
 const loadConfig = require('./load-config.js')
 
+let base_url;
+let key;
 
-const config = loadConfig();
-const base_url = config.mapbox_geocode_base_url;
-const key = config.mapbox_key;
+if(process.env.MAPBOX_GEOCODE_BASE_URL && process.env.MAPBOX_KEY){
+    base_url = process.env.MAPBOX_GEOCODE_BASE_URL;
+    key = process.env.MAPBOX_KEY;
+    console.log('Loading mapbox variables from environment.');
+} else {
+    let config = loadConfig();
+    base_url = config.mapbox_geocode_base_url;
+    key = config.mapbox_key;
+    console.log('Loading mapbox variables from config file.');
+}
 
 const geocode = (address, callback) => {
     const url = base_url + encodeURIComponent(address) 
